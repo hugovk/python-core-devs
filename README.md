@@ -1,15 +1,7 @@
-# Python Steering Council
+# Python Core Developers
 
-* **[https://hugovk.github.io/python-steering-council/](https://hugovk.github.io/python-steering-council/)**
-
-* **[https://hugovk.github.io/python-steering-council/bdfl.html](https://hugovk.github.io/python-steering-council/bdfl.html)**
-
-Edit the councils in [dates.js](dates.js)
+* **[https://hugovk.github.io/python-core-developers/](https://hugovk.github.io/python-core-developers/)**
 
 ## Sources
 
-* https://peps.python.org/pep-8100/
-* https://peps.python.org/pep-8101/
-* https://peps.python.org/pep-8102/ 
-* https://peps.python.org/pep-8103/
-* https://peps.python.org/pep-8104/
+* https://devguide.python.org/core-developers/developer-log/
