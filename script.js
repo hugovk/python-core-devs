@@ -1,4 +1,4 @@
-function getDataAndDrawChart() {
+function getDataAndDrawChart(showCurrent=true, showFormer=true) {
   const url = "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
   const today = new Date();
 
@@ -13,6 +13,20 @@ function getDataAndDrawChart() {
 
       // Oldest first
       data.reverse()
+
+      if (!showFormer) {
+        // Filter out former core developers
+        data = data.filter(function(d) {
+          return d[3] === null;
+        });
+      }
+
+      if (!showCurrent) {
+        // Filter out current core developers
+        data = data.filter(function(d) {
+          return d[3] !== null;
+        });
+      }
 
       for (let i = 0; i < data.length; i++) {
         // Remove the last element: "Notes"
