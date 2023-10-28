@@ -18,7 +18,7 @@ h1 {
 }
 
 #chart_div {
-  height: 510px;
+  height: 600px;
 }
 
 @media (prefers-color-scheme: dark) {
