@@ -17,9 +17,7 @@ const term_end_2021 = date(2021, 12, 16, 0, 0);
 const term_end_2022 = date(2022, 12, 15, 0, 0);
 const term_end_2023 = date(2023, 12, 15, 0, 0); // TBC
 
-const bdfl = [
-    [ 'Guido van Rossum', 'BDFL', python_invented, term_start_2019 ]
-];
+const bdfl = [["Guido van Rossum", "BDFL", python_invented, term_start_2019]];
 
 const councils = [
   ["Guido van Rossum", "2019", term_start_2019, term_end_2019],
