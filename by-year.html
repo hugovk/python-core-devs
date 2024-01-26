@@ -28,14 +28,70 @@
     <link rel="stylesheet" href="style.css" />
 
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="dates.js" defer></script>
-    <script src="script.js" defer></script>
     <script src="https://unpkg.com/d3@7.6.1/dist/d3.min.js"></script>
     <script>
-      google.charts.load("current", { packages: ["timeline"] });
-      google.charts.setOnLoadCallback(function () {
-        getDataAndDrawChart(true, false);
-      });
+      google.charts.load("current", { packages: ["bar"] });
+      google.charts.setOnLoadCallback(getDataAndDrawChart);
+
+      function getDataAndDrawChart() {
+        const url =
+          "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
+        const today = new Date();
+
+        d3.text(url).then(function (csvText) {
+          // Parse the CSV data into an array of objects
+          let data = d3.csvParseRows(csvText, d3.autoType, function (d) {
+            return d;
+          });
+
+          let countsPerYear = {};
+
+          data.forEach((item) => {
+            let joinDate = new Date(item[2]); // Assuming the join date is the third item in the array
+            let joinYear = joinDate.getFullYear();
+
+            if (!countsPerYear[joinYear]) {
+              countsPerYear[joinYear] = { joins: 0, leaves: 0 };
+            }
+
+            countsPerYear[joinYear].joins++;
+
+            if (item[3]) {
+              // If there is a leave date
+              let leaveDate = new Date(item[3]); // Assuming the leave date is the fourth item in the array
+              let leaveYear = leaveDate.getFullYear();
+
+              if (!countsPerYear[leaveYear]) {
+                countsPerYear[leaveYear] = { joins: 0, leaves: 0 };
+              }
+
+              countsPerYear[leaveYear].leaves++;
+            }
+          });
+
+          let countsPerYearArray = Object.entries(countsPerYear).map(
+            // ([year, counts]) => [year, counts.joins, counts.leaves],
+            ([year, counts]) => [year, counts.joins],
+          );
+          // countsPerYearArray.unshift(["Year", "Number of Joins", "Number of Leaves"]);
+          countsPerYearArray.unshift(["Year", "Number of Joins"]);
+
+          console.log(countsPerYearArray);
+
+          drawBarChart(countsPerYearArray);
+        });
+      }
+
+      function drawBarChart(rows) {
+        // https://developers.google.com/chart/interactive/docs/gallery/barchart
+        const data = new google.visualization.arrayToDataTable(rows);
+        const options = {
+          bars: "vertical",
+          legend: { position: "none" },
+        };
+        let chart = new google.charts.Bar(document.getElementById("chart_div"));
+        chart.draw(data, options);
+      }
     </script>
   </head>
   <body>
@@ -61,9 +117,8 @@
     </div>
     <div>
       <small>
-        See also: <a href="index.html">all</a>, <b>only current</b>,
-        <a href="former.html">only former</a> or
-        <a href="by-year.html">by year</a>
+        See also:<a href="index.html">all</a>, <a href="current.html">only current</a>,
+        <a href="former.html">only former</a> or <b>by year</b>
       </small>
     </div>
     <div>
