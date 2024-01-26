@@ -1,6 +1,6 @@
 # Python Core Developers
 
-- **[https://hugovk.github.io/python-core-developers/](https://hugovk.github.io/python-core-developers/)**
+- **[https://hugovk.github.io/python-core-devs/](https://hugovk.github.io/python-core-devs/)**
 
 ## Sources
 
