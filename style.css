@@ -16,6 +16,7 @@ body {
     arial,
     sans-serif;
   margin: 2em;
+  overflow-wrap: break-word;
 }
 
 h1 {
