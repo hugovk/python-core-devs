@@ -84,6 +84,7 @@
         const options = {
           bars: "vertical",
           legend: { position: "none" },
+          axes: { x: { 0: { label: "" } } },
         };
         let chart = new google.charts.Bar(document.getElementById("chart_div"));
         chart.draw(data, options);
