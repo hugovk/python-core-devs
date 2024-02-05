@@ -68,7 +68,7 @@
 
           // Add zero to any missing years
           let startYear = Object.keys(countsPerYear)[0];
-          let endYear = Object.keys(countsPerYear).slice(-1)[0];
+          let endYear = today.getFullYear();
           for (let year = startYear; year <= endYear; year++) {
             if (!countsPerYear[year]) {
               countsPerYear[year] = { joins: 0, leaves: 0 };
