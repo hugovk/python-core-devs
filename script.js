@@ -1,4 +1,6 @@
-async function fetchCsvData(url) {
+async function fetchCsvData() {
+  const url =
+    "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
   const response = await fetch(url);
   const csvText = await response.text();
   return d3.csvParseRows(csvText, d3.autoType);
@@ -65,11 +67,11 @@ function drawChart(rows) {
 }
 
 async function getDataAndDrawChart(showCurrent = true, showFormer = true) {
-  const url =
-    "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
-
-  const csvData = await fetchCsvData(url);
-  const filteredData = filterData(csvData, showCurrent, showFormer);
-  const cleanedData = cleanData(filteredData);
-  drawChart(cleanedData);
+  google.charts.load("current", { packages: ["timeline"] });
+  google.charts.setOnLoadCallback(async function () {
+    const csvData = await fetchCsvData();
+    const filteredData = filterData(csvData, showCurrent, showFormer);
+    const cleanedData = cleanData(filteredData);
+    drawChart(cleanedData);
+  });
 }

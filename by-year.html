@@ -29,10 +29,9 @@
     <script src="by-year.js" defer></script>
     <script src="https://unpkg.com/d3@7.6.1/dist/d3.min.js"></script>
     <script>
-      google.charts.load("current", { packages: ["bar"] });
-      google.charts.setOnLoadCallback(async function () {
+      window.onload = function () {
         getDataAndDrawBarChart();
-      });
+      };
     </script>
   </head>
   <body>

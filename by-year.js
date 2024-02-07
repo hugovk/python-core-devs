@@ -47,11 +47,11 @@ function drawBarChart(rows) {
 }
 
 async function getDataAndDrawBarChart() {
-  const url =
-    "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
-
-  const csvData = await fetchCsvData(url);
-  const processedData = processData(csvData);
-  const dataArray = convertDataToArray(processedData);
-  drawBarChart(dataArray);
+  google.charts.load("current", { packages: ["bar"] });
+  google.charts.setOnLoadCallback(async function () {
+    const csvData = await fetchCsvData();
+    const processedData = processData(csvData);
+    const dataArray = convertDataToArray(processedData);
+    drawBarChart(dataArray);
+  });
 }
