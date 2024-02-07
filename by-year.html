@@ -25,65 +25,13 @@
     <link rel="stylesheet" href="style.css" />
 
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="script.js" defer></script>
+    <script src="by-year.js" defer></script>
     <script src="https://unpkg.com/d3@7.6.1/dist/d3.min.js"></script>
     <script>
-      async function fetchCsvData(url) {
-        const response = await fetch(url);
-        const csvText = await response.text();
-        return d3.csvParseRows(csvText, d3.autoType);
-      }
-
-      function processData(data) {
-        const countsPerYear = {};
-        const today = new Date();
-        data.forEach((item) => {
-          const joinYear = new Date(item[2]).getFullYear();
-          countsPerYear[joinYear] = countsPerYear[joinYear] || { joins: 0, leaves: 0 };
-          countsPerYear[joinYear].joins++;
-          if (item[3]) {
-            const leaveYear = new Date(item[3]).getFullYear();
-            countsPerYear[leaveYear] = countsPerYear[leaveYear] || {
-              joins: 0,
-              leaves: 0,
-            };
-            countsPerYear[leaveYear].leaves++;
-          }
-        });
-        const startYear = Object.keys(countsPerYear)[0];
-        const endYear = today.getFullYear();
-        for (let year = startYear; year <= endYear; year++) {
-          countsPerYear[year] = countsPerYear[year] || { joins: 0, leaves: 0 };
-        }
-        return countsPerYear;
-      }
-
-      function convertDataToArray(countsPerYear) {
-        const countsPerYearArray = Object.entries(countsPerYear).map(
-          ([year, counts]) => [year, counts.joins],
-        );
-        countsPerYearArray.unshift(["Year", "New core devs"]);
-        return countsPerYearArray;
-      }
-
-      function drawBarChart(rows) {
-        const data = new google.visualization.arrayToDataTable(rows);
-        const options = {
-          bars: "vertical",
-          legend: { position: "none" },
-          axes: { x: { 0: { label: "" } } },
-        };
-        const chart = new google.charts.Bar(document.getElementById("chart_div"));
-        chart.draw(data, options);
-      }
-
       google.charts.load("current", { packages: ["bar"] });
       google.charts.setOnLoadCallback(async function () {
-        const url =
-          "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
-        const csvData = await fetchCsvData(url);
-        const processedData = processData(csvData);
-        const dataArray = convertDataToArray(processedData);
-        drawBarChart(dataArray);
+        getDataAndDrawBarChart();
       });
     </script>
   </head>
