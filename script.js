@@ -73,5 +73,6 @@ async function getDataAndDrawChart(showCurrent = true, showFormer = true) {
     const filteredData = filterData(csvData, showCurrent, showFormer);
     const cleanedData = cleanData(filteredData);
     drawChart(cleanedData);
+    console.table(filteredData);
   });
 }
