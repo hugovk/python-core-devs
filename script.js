@@ -1,6 +1,6 @@
 async function fetchCsvData() {
   const url =
-    "https://raw.githubusercontent.com/python/devguide/main/core-developers/developers.csv";
+    "https://raw.githubusercontent.com/python/devguide/main/core-team/core-team.csv";
   const response = await fetch(url);
   const csvText = await response.text();
   return d3.csvParseRows(csvText, d3.autoType);
