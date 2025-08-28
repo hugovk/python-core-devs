@@ -4,4 +4,4 @@
 
 ## Sources
 
-- https://devguide.python.org/core-developers/developer-log/
+- https://devguide.python.org/core-team/team-log/
