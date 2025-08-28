@@ -1,4 +1,4 @@
-# Python Core Developers
+# Python Core Team
 
 - **[https://hugovk.github.io/python-core-devs/](https://hugovk.github.io/python-core-devs/)**
 

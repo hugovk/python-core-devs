@@ -27,7 +27,7 @@ function convertDataToArray(countsPerYear) {
     year,
     counts.joins,
   ]);
-  countsPerYearArray.unshift(["Year", "New core devs"]);
+  countsPerYearArray.unshift(["Year", "New team members"]);
   return countsPerYearArray;
 }
 

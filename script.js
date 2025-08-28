@@ -11,14 +11,14 @@ function filterData(data, showCurrent, showFormer) {
   data.reverse();
 
   if (!showFormer) {
-    // Filter out former core developers
+    // Filter out former team members
     data = data.filter(function (d) {
       return d[3] === null;
     });
   }
 
   if (!showCurrent) {
-    // Filter out current core developers
+    // Filter out current team members
     data = data.filter(function (d) {
       return d[3] !== null;
     });
